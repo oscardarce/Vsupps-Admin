@@ -1,15 +1,22 @@
 "use client"
-import { Modal } from "@/components/ui/modal";
-import dynamic from "next/dynamic";
+import { useStoreModal } from "@/hooks/use-store-modal";
+import { useEffect } from "react";
 
 const SetUpPage = () => {
+  const onOpen = useStoreModal((state)=>state.onOpen)
+  const isOpen = useStoreModal((state)=>state.isOpen)
+  
+  useEffect(()=>{
+    if(!isOpen){
+      onOpen();
+    }
+  },[isOpen,onOpen])
+
   return (
     <div>
-      <Modal title="Test" description="Test description" isOpen onClose={()=>{}}>
-        Children
-      </Modal>
+      Root Page
     </div>
   )
 }
 
-export default dynamic (() => Promise.resolve(SetUpPage), {ssr: false})
+export default SetUpPage;
