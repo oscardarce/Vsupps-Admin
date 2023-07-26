@@ -1,0 +1,12 @@
+{
+  "editor.fontSize": 13,
+  "editor.tabSize": 2,
+  "editor.fontFamily": "JetBrains Mono",
+  "editor.cursorBlinking": "expand",
+  "editor.minimap.enabled": false,
+  "editor.scrollbar.vertical": "hidden",
+  "editor.overviewRulerBorder": false,
+  "editor.hideCursorInOverviewRuler": true,
+  "editor.formatOnSave": true,
+  "breadcrumbs.enabled": false 
+}
