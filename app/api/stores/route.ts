@@ -1,6 +1,7 @@
-import prismadb from "@/lib/prismadb";
-import { auth } from "@clerk/nextjs";
 import { NextResponse } from "next/server";
+import { auth } from "@clerk/nextjs";
+
+import prismadb from "@/lib/prismadb";
 
 export async function POST(req: Request) {
   try {
@@ -23,6 +24,7 @@ export async function POST(req: Request) {
         userId,
       },
     });
+
     return NextResponse.json(store);
   } catch (error) {
     console.log("[STORES_POST]", error);
