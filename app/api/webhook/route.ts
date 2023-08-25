@@ -7,8 +7,9 @@ import prismadb from "@/lib/prismadb";
 
 export async function POST(req: Request) {
   const body = await req.text();
+  console.log(req.body);
+  console.log(body);
   const signature = headers().get("Stripe-Signature") as string;
-
   let event: Stripe.Event;
 
   try {
@@ -17,6 +18,7 @@ export async function POST(req: Request) {
       signature,
       process.env.STRIPE_WEBHOOK_SECRET!
     );
+    console.dir(event);
   } catch (error: any) {
     return new NextResponse(`Webhook Error: ${error.message}`, { status: 400 });
   }
