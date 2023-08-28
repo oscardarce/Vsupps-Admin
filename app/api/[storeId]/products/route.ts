@@ -38,14 +38,17 @@ export async function POST(
     if (!price) {
       return new NextResponse("Price is required", { status: 400 });
     }
+
     if (!categoryId) {
       return new NextResponse("Category id is required", { status: 400 });
     }
+
+    if (!flavorId) {
+      return new NextResponse("Flavor id is required", { status: 400 });
+    }
+
     if (!sizeId) {
       return new NextResponse("Size id is required", { status: 400 });
-    }
-    if (!flavorId) {
-      return new NextResponse("Flavor id id is required", { status: 400 });
     }
 
     if (!params.storeId) {
@@ -83,7 +86,7 @@ export async function POST(
 
     return NextResponse.json(product);
   } catch (error) {
-    console.log("[PRODUCT_POST]", error);
+    console.log("[PRODUCTS_POST]", error);
     return new NextResponse("Internal error", { status: 500 });
   }
 }

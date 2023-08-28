@@ -1,11 +1,12 @@
 "use client";
 
 import axios from "axios";
-import { useState } from "react";
 import { Copy, Edit, MoreHorizontal, Trash } from "lucide-react";
-import { toast } from "react-hot-toast";
 import { useParams, useRouter } from "next/navigation";
+import { useState } from "react";
+import { toast } from "react-hot-toast";
 
+import { AlertModal } from "@/components/modals/alert-modal";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -14,7 +15,6 @@ import {
   DropdownMenuLabel,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { AlertModal } from "@/components/modals/alert-modal";
 
 import { ProductColumn } from "./columns";
 
@@ -23,10 +23,10 @@ interface CellActionProps {
 }
 
 export const CellAction: React.FC<CellActionProps> = ({ data }) => {
+  const [loading, setLoading] = useState(false);
+  const [open, setOpen] = useState(false);
   const router = useRouter();
   const params = useParams();
-  const [open, setOpen] = useState(false);
-  const [loading, setLoading] = useState(false);
 
   const onConfirm = async () => {
     try {
@@ -35,10 +35,10 @@ export const CellAction: React.FC<CellActionProps> = ({ data }) => {
       toast.success("Product deleted.");
       router.refresh();
     } catch (error) {
-      toast.error("Something went wrong.");
+      toast.error("Something went wrong");
     } finally {
-      setOpen(false);
       setLoading(false);
+      setOpen(false);
     }
   };
 

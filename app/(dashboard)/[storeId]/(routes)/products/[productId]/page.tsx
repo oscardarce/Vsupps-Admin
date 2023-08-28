@@ -21,11 +21,13 @@ const ProductPage = async ({
       storeId: params.storeId,
     },
   });
+
   const sizes = await prismadb.size.findMany({
     where: {
       storeId: params.storeId,
     },
   });
+
   const flavors = await prismadb.flavor.findMany({
     where: {
       storeId: params.storeId,
