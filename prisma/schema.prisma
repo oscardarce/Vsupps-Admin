@@ -60,6 +60,7 @@ model Product {
   price      Decimal
   isFeatured Boolean     @default(false)
   isArchived Boolean     @default(false)
+  info       String      @db.VarChar(1000)
   sizeId     String // Foreign Key to Size
   size       Size        @relation(fields: [sizeId], references: [id])
   flavorId   String // Foreign Key to flavor
