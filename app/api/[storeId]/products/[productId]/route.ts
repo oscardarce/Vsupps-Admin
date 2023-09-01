@@ -88,6 +88,7 @@ export async function PATCH(
       sizeId,
       isFeatured,
       isArchived,
+      info,
     } = body;
 
     if (!userId) {
@@ -108,6 +109,10 @@ export async function PATCH(
 
     if (!price) {
       return new NextResponse("Price is required", { status: 400 });
+    }
+
+    if (!info) {
+      return new NextResponse("Info is required", { status: 400 });
     }
 
     if (!categoryId) {
@@ -148,6 +153,7 @@ export async function PATCH(
         },
         isFeatured,
         isArchived,
+        info,
       },
     });
 

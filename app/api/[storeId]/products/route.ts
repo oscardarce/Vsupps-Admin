@@ -21,6 +21,7 @@ export async function POST(
       images,
       isFeatured,
       isArchived,
+      info,
     } = body;
 
     if (!userId) {
@@ -51,6 +52,10 @@ export async function POST(
       return new NextResponse("Size id is required", { status: 400 });
     }
 
+    if (!info) {
+      return new NextResponse("Info is required", { status: 400 });
+    }
+
     if (!params.storeId) {
       return new NextResponse("Store id is required", { status: 400 });
     }
@@ -70,6 +75,7 @@ export async function POST(
       data: {
         name,
         price,
+        info,
         isFeatured,
         isArchived,
         categoryId,
@@ -101,6 +107,7 @@ export async function GET(
     const flavorId = searchParams.get("flavorId") || undefined;
     const sizeId = searchParams.get("sizeId") || undefined;
     const isFeatured = searchParams.get("isFeatured");
+    const info = searchParams.get("info") || undefined;
 
     if (!params.storeId) {
       return new NextResponse("Store id is required", { status: 400 });
@@ -114,6 +121,7 @@ export async function GET(
         sizeId,
         isFeatured: isFeatured ? true : undefined,
         isArchived: false,
+        info,
       },
       include: {
         images: true,

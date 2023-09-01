@@ -33,6 +33,7 @@ import {
 } from "@/components/ui/select";
 import ImageUpload from "@/components/ui/image-upload";
 import { Checkbox } from "@/components/ui/checkbox";
+import { Textarea } from "@/components/ui/textarea";
 
 const formSchema = z.object({
   name: z.string().min(1),
@@ -41,6 +42,7 @@ const formSchema = z.object({
   categoryId: z.string().min(1),
   flavorId: z.string().min(1),
   sizeId: z.string().min(1),
+  info: z.string().min(1),
   isFeatured: z.boolean().default(false).optional(),
   isArchived: z.boolean().default(false).optional(),
 });
@@ -87,6 +89,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
         categoryId: "",
         flavorId: "",
         sizeId: "",
+        info: "",
         isFeatured: false,
         isArchived: false,
       };
@@ -354,6 +357,25 @@ export const ProductForm: React.FC<ProductFormProps> = ({
                       This product will not appear anywhere in the store.
                     </FormDescription>
                   </div>
+                </FormItem>
+              )}
+            />
+          </div>
+          <div>
+            <FormField
+              control={form.control}
+              name="info"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Product description</FormLabel>
+                  <FormControl>
+                    <Textarea
+                      disabled={loading}
+                      placeholder="Product Info"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
                 </FormItem>
               )}
             />
